@@ -1,0 +1,60 @@
+#item
+item.zhenzimod.green_dog.name=Green Dog
+item.zhenzimod.lightning_staff.name=Lightning Staff
+item.zhenzimod.sc_iron_sword.name=Super Charged IronSword
+item.zhenzimod.sc_iron_hoe.name=Super Charged IronHoe
+item.zhenzimod.sc_iron_axe.name=Super Charged IronAxe
+item.zhenzimod.sc_iron_pickaxe.name=Super Charged IronPickaxe
+item.zhenzimod.sc_iron_spade.name=Super Charged IronSpade
+item.zhenzimod.pulse_impurity.name=Pulse Impurity
+item.zhenzimod.unstable_pulse_impurity.name=Unstable pulse impurity
+item.zhenzimod.debugging_tools.name=Debug Tools
+item.zhenzimod.super_charged_iron_ingot.name=Super Charged Iron Ingot
+item.zhenzimod.pulse_iron_sword.name=Pulse Iron Sword (WIP)
+item.zhenzimod.sc_iron_helmet.name=Super Charged Iron Helmet (WIP)
+item.zhenzimod.sc_iron_chestplate.name=Super Charged Iron Chestplate (WIP)
+item.zhenzimod.sc_iron_leggings.name=Super Charged Iron Leggings (WIP)
+item.zhenzimod.sc_iron_boot.name=Super Charged Iron Boots (WIP)
+item.zhenzimod.sci_lightning_staff.name=Super Charged Iron Lightning Staff (WIP)
+item.zhenzimod.stable_pulse_ingot.name=Stable Pulse Ingot
+item.zhenzimod.stick_with_upi.name=Stick With Unstable Pulse Impurity (WIP)
+
+#block
+tile.zhenzimod.super_charged_iron_block.name=Super Charged Iron Block
+tile.zhenzimod.green_ore_block.name=Green Ore
+tile.zhenzimod.lightning_block.name=Lightning Block (WIP)
+tile.zhenzimod.iron_lightning_block.name=Iron Lightning Block
+tile.zhenzimod.iron_lightning_rs_block.name=Iron RedStone Lightning Block
+tile.zhenzimod.iron_lightning_rs_block_broken.name=Broken Iron RedStone Lightning Block
+tile.zhenzimod.sci_pulse_furnace.name=Super Charged Iron Pulse Furnace (WIP)
+tile.zhenzimod.rack.name=Rack (WIP)
+
+#CreativeTab
+itemGroup.zhenzimod=Zhenzi Mod
+
+#enchantment
+enchantment.lightning_strike=Lightning Strike
+#potion
+zhenzimod.thunder_king=Thunder King
+#control
+key.zhenzimod.debugSetDay=SetDay(I don`t need dark)
+key.categories.zhenzimod=Zhenzi Mod
+#chat
+chat.zhenzimod.debug.setday=DebugMode:I will don`t see so dark!(WIP)
+#command
+commands.position.history=Position History
+commands.position.success=The position of %1$s is %2$s
+#container
+container.zhenzimod.debug=Debug Item (WIP)
+container.zhenzimod.block.pos=Get Block Pos
+container.zhenzimod.block.state=Get Block State
+#death
+death.attack.energy_overload=Died Of Electrocution
+#Advancements
+advancements.zhenzimod.root.title=Lightning Mod
+advancements.zhenzimod.root.description=Thanks For Your Playing!
+advancements.zhenzimod.joy.title=First time struck by lightning
+advancements.zhenzimod.joy.description=Wow! You are study for Lightning Mod!
+#Jei
+jei.zhenzimod.green_dog_title=Green Dog
+jei.zhenzimod.green_dog_describe=A little painted eggshell

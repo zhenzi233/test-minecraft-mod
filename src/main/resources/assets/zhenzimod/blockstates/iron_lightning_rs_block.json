@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "zhenzimod:iron_lightning_rs_block"
+  },
+  "variants": {
+    "power_state=0": {"model": "zhenzimod:iron_lightning_rs_block"},
+    "power_state=1": {"model": "zhenzimod:iron_lightning_rs_block"},
+    "power_state=2": {"model": "zhenzimod:iron_lightning_rs_block"},
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}

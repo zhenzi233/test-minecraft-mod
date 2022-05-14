@@ -1,0 +1,46 @@
+#item
+item.zhenzimod.green_dog.name=Doge （绿）
+item.zhenzimod.lightning_staff.name=闪电法杖
+item.zhenzimod.sc_iron_sword.name=强充能铁剑
+item.zhenzimod.sc_iron_hoe.name=强充能铁锄
+item.zhenzimod.sc_iron_axe.name=强充能铁斧
+item.zhenzimod.sc_iron_pickaxe.name=强充能铁镐
+item.zhenzimod.sc_iron_spade.name=强充能铁锹
+item.zhenzimod.pulse_impurity.name=脉冲杂质
+item.zhenzimod.unstable_pulse_impurity.name=不稳定脉冲杂质
+item.zhenzimod.debugging_tools.name=调试物品
+item.zhenzimod.super_charged_iron_ingot.name=强充能铁剑
+item.zhenzimod.pulse_iron_sword.name=脉冲铁剑 (WIP)
+item.zhenzimod.sc_iron_helmet.name=强充能铁头盔 (WIP)
+item.zhenzimod.sc_iron_chestplate.name=强充能铁胸甲 (WIP)
+item.zhenzimod.sc_iron_leggings.name=强充能铁护腿 (WIP)
+item.zhenzimod.sc_iron_boot.name=强充能铁鞋 (WIP)
+item.zhenzimod.sci_lightning_staff.name=强充能铁雷达法杖 (WIP)
+item.zhenzimod.stable_pulse_ingot.name=稳定脉冲锭
+item.zhenzimod.stick_with_upi.name=绑着不稳定脉冲杂质的棒子 (WIP)
+
+#block
+tile.zhenzimod.super_charged_iron_block.name=强充能铁块
+tile.zhenzimod.green_ore_block.name=绿色矿石
+tile.zhenzimod.lightning_block.name=招雷块 (WIP)
+tile.zhenzimod.iron_lightning_block.name=铁招雷块
+tile.zhenzimod.iron_lightning_rs_block.name=红石控制铁招雷块
+tile.zhenzimod.iron_lightning_rs_block_broken.name=破碎的铁招雷块
+tile.zhenzimod.sci_pulse_furnace.name=强充能铁熔炉 (WIP)
+tile.zhenzimod.rack.name=架子 (WIP)
+
+#CreativeTab
+itemGroup.zhenzimod=榛子的模组
+
+#enchantment
+enchantment.lightning_strike=引雷
+#potion
+zhenzimod.thunder_king=雷电法王
+#control
+key.zhenzimod.debugSetDay=设定白天（我不想太黑了！！）（WIP)
+key.categories.zhenzimod=榛子的模组
+#chat
+chat.zhenzimod.debug.setday=调试模式：我不想太黑了(WIP)
+#advancement
+advancements.zhenzimod.joy.title=为何要放弃治疗?
+advancements.zhenzimod.joy.description=你玩MC上瘾了，需要闪电的“治疗”(doge

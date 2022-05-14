@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "zhenzimod:blocks/green_ore_block"
+  }
+}

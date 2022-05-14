@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "zhenzimod:blocks/thunder_flower"
+  }
+}

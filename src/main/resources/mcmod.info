@@ -1,0 +1,16 @@
+[
+{
+  "modid": "zhenzimod",
+  "name": "Zhenzi Mod",
+  "description": "The Mod For Zhenzi233",
+  "version": "1.0",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ZHEN_ZI233"],
+  "credits": "Forge and Notch",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

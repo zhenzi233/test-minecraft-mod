@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "zhenzimod:lightning_block"
+  },
+  "variants": {
+    "power_state=0": {"model": "zhenzimod:lightning_block"},
+    "power_state=1": {"model": "zhenzimod:lightning_block"},
+    "power_state=2": {"model": "zhenzimod:lightning_block"},
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}

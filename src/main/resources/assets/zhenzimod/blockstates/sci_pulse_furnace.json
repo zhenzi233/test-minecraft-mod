@@ -1,0 +1,18 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "zhenzimod:sci_pulse_furnace"
+  },
+  "variants": {
+    "burning=false,facing=south": {"model": "zhenzimod:sci_pulse_furnace", "y": 180, "uvlock": true},
+    "burning=false,facing=north": {"model": "zhenzimod:sci_pulse_furnace"},
+    "burning=false,facing=east": {"model": "zhenzimod:sci_pulse_furnace", "y": 90, "uvlock": true},
+    "burning=false,facing=west": {"model": "zhenzimod:sci_pulse_furnace", "y": 270, "uvlock": true},
+    "burning=true,facing=west": {"model": "zhenzimod:sci_pulse_furnace_on", "y": 270, "uvlock": true},
+    "burning=true,facing=south": {"model": "zhenzimod:sci_pulse_furnace_on", "y": 180, "uvlock": true},
+    "burning=true,facing=north": {"model": "zhenzimod:sci_pulse_furnace_on"},
+    "burning=true,facing=east": {"model": "zhenzimod:sci_pulse_furnace_on", "y": 90, "uvlock": true},
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}
