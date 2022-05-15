@@ -18,11 +18,11 @@ public class LightningConvertRecipeMaker {
     {
         IStackHelper stackHelper = helpers.getStackHelper();
         EventLightningConvert convertRecipe = EventLightningConvert.instance();
-        Map<ItemStack, ItemStack> smeltingMap = convertRecipe.getConvertListItem();
+        Map<ItemStack, ItemStack> convertMap = convertRecipe.getConvertListItem();
 
         List<LightningConvertRecipeWrapper> recipes = new ArrayList<>();
 
-        for (Map.Entry<ItemStack, ItemStack> entry : smeltingMap.entrySet()) {
+        for (Map.Entry<ItemStack, ItemStack> entry : convertMap.entrySet()) {
             ItemStack input = entry.getKey();
             ItemStack output = entry.getValue();
 

@@ -69,10 +69,10 @@ public class TileEntitySCIFurnace extends TileEntity implements ITickable {
     {
         if (!this.world.isRemote)
         {
-
+//对应的物品槽获取物品
             ItemStack itemStack = upInventory.extractItem(0, 1, true);
             IBlockState state = this.world.getBlockState(pos);
-
+//对应的物品槽塞入物品
             if (itemStack != ItemStack.EMPTY && downInventory.insertItem(0, itemStack, true) == ItemStack.EMPTY)
             {
                 this.world.setBlockState(pos, state.withProperty(BlockSCIPulseFurnace.BURNING, Boolean.TRUE));

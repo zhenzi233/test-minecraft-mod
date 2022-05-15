@@ -24,7 +24,8 @@ public class LightningConvertRecipeCategory implements IRecipeCategory<Lightning
 
     public LightningConvertRecipeCategory(IGuiHelper guiHelper) {
         super();
-        background = guiHelper.createBlankDrawable(142, 55);
+//        background = guiHelper.createBlankDrawable(142, 55);
+        background = guiHelper.createDrawable(iconResource, 0, 16, 82, 54);
         localizedName = I18n.format("jei.zhenzimod.lightning_convert.name");
         icon = guiHelper.createDrawable(iconResource, 0, 0, 16, 16);
     }
@@ -52,8 +53,8 @@ public class LightningConvertRecipeCategory implements IRecipeCategory<Lightning
     public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull LightningConvertRecipeWrapper recipeWrapper, @Nonnull IIngredients ingredients) {
         int inputSlot = 0;
         int outputSlot = 1;
-        recipeLayout.getItemStacks().init(inputSlot, true, 32, 12);
-        recipeLayout.getItemStacks().init(outputSlot, false, 93, 12);
+        recipeLayout.getItemStacks().init(inputSlot, true, 6, 18);
+        recipeLayout.getItemStacks().init(outputSlot, false, 58, 18);
         recipeLayout.getItemStacks().set(ingredients);
     }
     @Nonnull

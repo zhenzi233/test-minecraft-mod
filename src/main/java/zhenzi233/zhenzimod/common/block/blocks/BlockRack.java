@@ -46,17 +46,28 @@ public class BlockRack extends BlockContainer {
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        ItemStack playerHandStack = playerIn.getHeldItem(EnumHand.MAIN_HAND);
+        ItemStack recordStack = playerHandStack.copy();
+        TileEntityRack te = (TileEntityRack) worldIn.getTileEntity(pos);
+        IItemHandler up = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+        IItemHandler down = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
         if (!worldIn.isRemote && !playerIn.getHeldItem(hand).equals(new ItemStack(ItemLoader.DEBUGGING_TOOLS)))
         {
             if (!playerIn.isSneaking())
             {
-                worldIn.spawnEntity(new EntityItem(worldIn, pos.getX(), pos.getY() + 0.25D, pos.getZ(), new ItemStack(ItemLoader.GREEN_DOG)));
+                if (!playerHandStack.isEmpty() && !playerIn.capabilities.isCreativeMode)
+                {
+                    up.insertItem(0, recordStack, false);
+                    playerHandStack.shrink(1);
+                } else {
+                    up.insertItem(0, recordStack, false);
+                }
+
             }   else {
-                TileEntityRack te = (TileEntityRack) worldIn.getTileEntity(pos);
-                IItemHandler up = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-                IItemHandler down = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
+
                 String msg = String.format("Up: %s, Down: %s", up.getStackInSlot(0), down.getStackInSlot(0));
                 playerIn.sendMessage(new TextComponentString(msg));
+
             }
         }
         return true;

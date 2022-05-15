@@ -1,5 +1,6 @@
 package zhenzi233.zhenzimod.common.event;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -13,8 +14,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,6 +25,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
@@ -35,6 +39,8 @@ import zhenzi233.zhenzimod.ZhenziMod;
 import zhenzi233.zhenzimod.client.KeyLoader;
 //import zhenzi233.zhenzimod.common.capability.CapablityLoader;
 //import zhenzi233.zhenzimod.common.capability.EntityLivingBase.CapabilityEntityLivingBase;
+import zhenzi233.zhenzimod.common.block.BlockLoader;
+import zhenzi233.zhenzimod.common.block.tileentity.TileEntityRack;
 import zhenzi233.zhenzimod.common.capability.CapablityLoader;
 import zhenzi233.zhenzimod.common.capability.EntityLivingBase.CapabilityEntityLivingBase;
 import zhenzi233.zhenzimod.common.capability.EntityLivingBase.IEntityLivingBase;
@@ -56,6 +62,26 @@ public class EventHandler {
     public EventHandler(){
         MinecraftForge.EVENT_BUS.register(this);
         EventHandler.EVENT_BUS.register(this);
+    }
+
+    @SubscribeEvent
+    public void LightningBlotConvert(EntityJoinWorldEvent event)
+    {
+        Entity bolt = event.getEntity();
+        World world = event.getWorld();
+        if (!world.isRemote)
+        {
+            if (bolt instanceof EntityLightningBolt)
+            {
+                BlockPos boltPos = bolt.getPosition();
+                Block rack = world.getBlockState(boltPos).getBlock();
+                if (rack.equals(BlockLoader.RACK))
+                {
+                    TileEntityRack teRack = (TileEntityRack) world.getTileEntity(boltPos);
+                    teRack.setValue(true);
+                }
+            }
+        }
     }
 
     @SubscribeEvent
