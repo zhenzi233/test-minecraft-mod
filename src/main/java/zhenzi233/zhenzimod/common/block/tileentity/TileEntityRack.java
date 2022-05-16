@@ -1,17 +1,18 @@
 package zhenzi233.zhenzimod.common.block.tileentity;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import zhenzi233.zhenzimod.common.block.tileentity.slot.RackSlot;
+import zhenzi233.zhenzimod.common.recipe.recipeutil.RecipeRackUtil;
+
+import javax.annotation.Nonnull;
 
 
 public class TileEntityRack extends TileEntity implements ITickable {
@@ -19,6 +20,7 @@ public class TileEntityRack extends TileEntity implements ITickable {
 
     ItemStackHandler ITEM_PUT = new RackSlot();
     ItemStackHandler ITEM_OUT = new RackSlot();
+    RecipeRackUtil recipeRackUtil = RecipeRackUtil.instance();
     public boolean runRackWithLightning = false;
 
     public TileEntityRack()
@@ -42,19 +44,25 @@ public class TileEntityRack extends TileEntity implements ITickable {
     {
         if (!world.isRemote)
         {
+
             ItemStack stack = ITEM_PUT.extractItem(0, 1, true);
+            Item item = stack.getItem();
+            ItemStack output = recipeRackUtil.getRackRecipe(item);
             if (this.getValue() && !stack.isEmpty())
             {
-                stack = ITEM_PUT.extractItem(0, 1, false);
-                ITEM_OUT.insertItem(0, stack, false);
-                this.markDirty();
-                this.setValue(false);
+                if (!output.isEmpty())
+                {
+                    ITEM_PUT.extractItem(0, 1, false);
+                    ITEM_OUT.insertItem(0, output, false);
+                    this.markDirty();
+                    this.setValue(false);
+                }
             }
         }
     }
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+    public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing facing)
     {
         if (CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.equals(capability))
         {
@@ -64,7 +72,7 @@ public class TileEntityRack extends TileEntity implements ITickable {
     }
 
     @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+    public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing)
     {
         if (CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.equals(capability))
         {
@@ -77,7 +85,7 @@ public class TileEntityRack extends TileEntity implements ITickable {
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound)
+    public void readFromNBT(@Nonnull NBTTagCompound compound)
     {
         super.readFromNBT(compound);
         this.ITEM_PUT.deserializeNBT(compound.getCompoundTag("PutItem"));
@@ -85,7 +93,8 @@ public class TileEntityRack extends TileEntity implements ITickable {
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    @Nonnull
+    public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound)
     {
         super.writeToNBT(compound);
         compound.setTag("PutItem", this.ITEM_PUT.serializeNBT());
@@ -98,4 +107,8 @@ public class TileEntityRack extends TileEntity implements ITickable {
 //    {
 //        return oldState.getBlock() != newState.getBlock();
 //    }
+
+
+
+
 }

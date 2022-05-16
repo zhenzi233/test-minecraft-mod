@@ -24,6 +24,7 @@ import zhenzi233.zhenzimod.common.misc.fluid.FluidLoader;
 import zhenzi233.zhenzimod.common.proxy.ProxyBase;
 import zhenzi233.zhenzimod.common.recipe.RecipeFurnace;
 import zhenzi233.zhenzimod.common.recipe.RecipeLightningConvertBlock;
+import zhenzi233.zhenzimod.common.recipe.RecipeRack;
 import zhenzi233.zhenzimod.common.util.Reference;
 import zhenzi233.zhenzimod.common.world.WorldGenLoader;
 
@@ -88,6 +89,7 @@ public class ZhenziMod
 
         RecipeFurnace.registerSmelting();
         RecipeLightningConvertBlock.addRecipe();
+        RecipeRack.addRecipe();
 
         new GuiElementLoader();
 

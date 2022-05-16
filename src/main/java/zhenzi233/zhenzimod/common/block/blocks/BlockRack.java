@@ -1,5 +1,6 @@
 package zhenzi233.zhenzimod.common.block.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -21,6 +22,8 @@ import zhenzi233.zhenzimod.common.block.tileentity.TileEntityRack;
 import zhenzi233.zhenzimod.common.item.ItemLoader;
 import zhenzi233.zhenzimod.common.misc.creativetab.CreativeTabLoader;
 
+import javax.annotation.Nonnull;
+
 public class BlockRack extends BlockContainer {
     protected static final AxisAlignedBB RACK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D);
 
@@ -31,36 +34,87 @@ public class BlockRack extends BlockContainer {
         this.setCreativeTab(CreativeTabLoader.tabZhenziMod);
     }
 
+
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
+    public TileEntity createNewTileEntity(@Nonnull World worldIn, int meta)
     {
         return new TileEntityRack();
     }
     //change tileEntity RenderType
     @Override
-    public EnumBlockRenderType getRenderType(IBlockState state)
+    @Nonnull
+    public EnumBlockRenderType getRenderType(@Nonnull IBlockState state)
     {
         return EnumBlockRenderType.MODEL;
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public void breakBlock(World worldIn,@Nonnull BlockPos pos,@Nonnull IBlockState state)
+    {
+        TileEntityRack te = (TileEntityRack) worldIn.getTileEntity(pos);
+        IItemHandler up = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+        IItemHandler down = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
+        ItemStack rackUpStack = up.getStackInSlot(0);
+        ItemStack rackDownStack = down.getStackInSlot(0);
+        if (!rackUpStack.isEmpty())
+        {
+            Block.spawnAsEntity(worldIn, pos, rackUpStack);
+        }
+        if (!rackDownStack.isEmpty())
+        {
+            Block.spawnAsEntity(worldIn, pos, rackDownStack);
+        }
+        super.breakBlock(worldIn, pos, state);
+    }
+    @Override
+    public boolean onBlockActivated(World worldIn,@Nonnull BlockPos pos,@Nonnull IBlockState state, EntityPlayer playerIn,@Nonnull EnumHand hand,@Nonnull EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         ItemStack playerHandStack = playerIn.getHeldItem(EnumHand.MAIN_HAND);
         ItemStack recordStack = playerHandStack.copy();
         TileEntityRack te = (TileEntityRack) worldIn.getTileEntity(pos);
         IItemHandler up = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
         IItemHandler down = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
+        ItemStack rackUpStack = up.getStackInSlot(0);
+        ItemStack rackDownStack = down.getStackInSlot(0);
         if (!worldIn.isRemote && !playerIn.getHeldItem(hand).equals(new ItemStack(ItemLoader.DEBUGGING_TOOLS)))
         {
             if (!playerIn.isSneaking())
             {
-                if (!playerHandStack.isEmpty() && !playerIn.capabilities.isCreativeMode)
+
+                if (!up.getStackInSlot(0).isEmpty())
                 {
-                    up.insertItem(0, recordStack, false);
-                    playerHandStack.shrink(1);
-                } else {
-                    up.insertItem(0, recordStack, false);
+                    up.extractItem(0, 1, false);
+                    EntityItem entityItem = playerIn.dropItem(rackUpStack, false);
+                    if (entityItem != null)
+                    {
+                        entityItem.setNoPickupDelay();
+                        entityItem.setOwner(playerIn.getName());
+                    }
+                    return true;
+                }
+
+                if (!down.getStackInSlot(0).isEmpty())
+                {
+                    down.extractItem(0, 1, false);
+                    EntityItem entityItem = playerIn.dropItem(rackDownStack, false);
+                    if (entityItem != null)
+                    {
+                        entityItem.setNoPickupDelay();
+                        entityItem.setOwner(playerIn.getName());
+                    }
+                    return true;
+                }
+
+                if (up.getStackInSlot(0).isEmpty() && down.getStackInSlot(0).isEmpty())
+                {
+                    if (!playerHandStack.isEmpty() && !playerIn.capabilities.isCreativeMode)
+                    {
+                        up.insertItem(0, recordStack, false);
+                        playerHandStack.shrink(1);
+                    } else {
+                        up.insertItem(0, recordStack, false);
+                    }
+
                 }
 
             }   else {
@@ -72,18 +126,18 @@ public class BlockRack extends BlockContainer {
         }
         return true;
     }
-
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    @Nonnull
+    public AxisAlignedBB getBoundingBox(@Nonnull IBlockState state,@Nonnull IBlockAccess source,@Nonnull BlockPos pos)
     {
         return RACK_AABB;
     }
 
-    public boolean isOpaqueCube(IBlockState state)
+    public boolean isOpaqueCube(@Nonnull IBlockState state)
     {
         return false;
     }
 
-    public boolean isFullCube(IBlockState state)
+    public boolean isFullCube(@Nonnull IBlockState state)
     {
         return false;
     }
