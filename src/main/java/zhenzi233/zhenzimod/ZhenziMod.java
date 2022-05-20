@@ -21,6 +21,7 @@ import zhenzi233.zhenzimod.common.misc.command.CommandLoader;
 import zhenzi233.zhenzimod.common.misc.config.ConfigHandler;
 import zhenzi233.zhenzimod.common.misc.creativetab.CreativeTabLoader;
 import zhenzi233.zhenzimod.common.misc.fluid.FluidLoader;
+import zhenzi233.zhenzimod.common.network.NetworkLoader;
 import zhenzi233.zhenzimod.common.proxy.ProxyBase;
 import zhenzi233.zhenzimod.common.recipe.RecipeFurnace;
 import zhenzi233.zhenzimod.common.recipe.RecipeLightningConvertBlock;
@@ -69,6 +70,8 @@ public class ZhenziMod
         {
             new RenderLoader();
         }
+
+        new NetworkLoader(event);
 
 
     }

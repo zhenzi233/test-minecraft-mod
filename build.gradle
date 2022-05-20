@@ -39,9 +39,12 @@ dependencies {
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
 
+    //jei
     deobfCompile "mezz.jei:jei_1.12.2:4.16.1.302:api"
-    // at runtime, use the full JEI jar
     runtime "mezz.jei:jei_1.12.2:4.16.1.302"
+
+    //Top
+//    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.4.4"
       
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
@@ -91,4 +94,9 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+//    maven {
+//        // location of a maven mirror for JEI files, as a fallback
+//        name = "tterrag maven"
+//        url = "http://maven.tterrag.com/"
+//    }
 }

@@ -7,12 +7,15 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fluids.BlockFluidBase;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import zhenzi233.zhenzimod.ZhenziMod;
 import zhenzi233.zhenzimod.common.block.BlockLoader;
+import zhenzi233.zhenzimod.common.block.tileentity.TileEntityRack;
+import zhenzi233.zhenzimod.common.block.tileentity.runutil.RenderTileEntityRack;
 import zhenzi233.zhenzimod.common.entity.entitirs.EntityUnstablePulseImpurity;
 import zhenzi233.zhenzimod.common.entity.render.RenderUnstablePulseImpurity;
 import zhenzi233.zhenzimod.common.item.ItemLoader;
@@ -57,6 +60,8 @@ public class ModelLoader {
         registerFluidRender((BlockFluidBase) BlockLoader.CHARGED_WATER_BLOCK, "fluid_charged_water");
 
         RenderingRegistry.registerEntityRenderingHandler(EntityUnstablePulseImpurity.class, RenderUnstablePulseImpurity::new);
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRack.class, new RenderTileEntityRack());
     }
 
 

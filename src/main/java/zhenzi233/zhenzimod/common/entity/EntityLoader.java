@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import zhenzi233.zhenzimod.ZhenziMod;
+import zhenzi233.zhenzimod.common.entity.entitirs.EntityDisplayItem;
 import zhenzi233.zhenzimod.common.entity.entitirs.EntityOneEyeSkeleton;
 import zhenzi233.zhenzimod.common.entity.render.EntityRenderFactory;
 import zhenzi233.zhenzimod.common.entity.entitirs.EntityUnstablePulseImpurity;
@@ -22,6 +23,7 @@ public class EntityLoader {
     {
         registerEntity(EntityOneEyeSkeleton.class, "OneEyeSkeleton", 80, 3, true);
         registerEntity(EntityUnstablePulseImpurity.class, "UnstablePulseImpurity", 64, 10, true);
+        registerEntity(EntityDisplayItem.class, "DisplayItem", 64, 10, true);
 //        registerEntity(EntityLightningBlotLight.class, "LightningBlotLight", 10, 10, true);
         registerEntityEgg("OneEyeSkeleton",  0xffff66, 0x660000);
     }

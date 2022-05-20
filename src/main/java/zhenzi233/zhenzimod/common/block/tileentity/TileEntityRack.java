@@ -7,21 +7,27 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import zhenzi233.zhenzimod.common.block.tileentity.slot.RackSlot;
+import zhenzi233.zhenzimod.common.network.MessageRack;
+import zhenzi233.zhenzimod.common.network.NetworkLoader;
 import zhenzi233.zhenzimod.common.recipe.recipeutil.RecipeRackUtil;
 
 import javax.annotation.Nonnull;
 
 
-public class TileEntityRack extends TileEntity implements ITickable {
+public class TileEntityRack extends TileEntityBase implements ITickable {
 
 
     ItemStackHandler ITEM_PUT = new RackSlot();
     ItemStackHandler ITEM_OUT = new RackSlot();
     RecipeRackUtil recipeRackUtil = RecipeRackUtil.instance();
     public boolean runRackWithLightning = false;
+    ItemStack inventoryItem;
 
     public TileEntityRack()
     {
@@ -37,6 +43,28 @@ public class TileEntityRack extends TileEntity implements ITickable {
     {
         return this.runRackWithLightning;
     }
+    public ItemStack getInventoryItemStack()
+    {
+        return this.inventoryItem;
+    }
+
+    public void sendInventoryItemPacket()
+    {
+        int dimension = world.provider.getDimension();
+        double x = getPos().getX();
+        double y = getPos().getY();
+        double z = getPos().getZ();
+        NetworkLoader.instance.sendToAllAround(new MessageRack(this), new TargetPoint(dimension, x, y, z, 128D));
+    }
+    public ItemStack getInventoryItem()
+    {
+        return this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP).getStackInSlot(0);
+    }
+//
+    public void receiveMessageFromServer(ItemStack receivedItemStack)
+    {
+        this.inventoryItem = receivedItemStack;
+    }
 
 
     @Override
@@ -46,18 +74,27 @@ public class TileEntityRack extends TileEntity implements ITickable {
         {
 
             ItemStack stack = ITEM_PUT.extractItem(0, 1, true);
+//            MessageRack messageRack = new MessageRack();
+//            messageRack.setItemStack(stack);
+//            messageRack.itemStack = stack;
             Item item = stack.getItem();
             ItemStack output = recipeRackUtil.getRackRecipe(item);
-            if (this.getValue() && !stack.isEmpty())
+            if (!stack.isEmpty())
             {
-                if (!output.isEmpty())
+                sendInventoryItemPacket();
+                if (this.getValue())
                 {
-                    ITEM_PUT.extractItem(0, 1, false);
-                    ITEM_OUT.insertItem(0, output, false);
-                    this.markDirty();
-                    this.setValue(false);
+                    if (!output.isEmpty())
+                    {
+                        ITEM_PUT.extractItem(0, 1, false);
+                        ITEM_OUT.insertItem(0, output, false);
+                        this.markDirty();
+                        this.setValue(false);
+                    }
                 }
             }
+
+
         }
     }
 
