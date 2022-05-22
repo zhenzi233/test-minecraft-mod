@@ -20,4 +20,10 @@ public class CreativeTabZhenzi extends CreativeTabs {
     public ItemStack getTabIconItem(){
         return new ItemStack(Items.BED);
     }
+    @SideOnly(Side.CLIENT)
+    @Override
+    public String getTranslatedTabLabel()
+    {
+        return "zhenzimod.creative_tab.item.label";
+    }
 }

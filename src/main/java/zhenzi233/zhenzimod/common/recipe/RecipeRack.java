@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import zhenzi233.zhenzimod.common.block.BlockLoader;
+import zhenzi233.zhenzimod.common.event.EventLightning;
 import zhenzi233.zhenzimod.common.item.ItemLoader;
 import zhenzi233.zhenzimod.common.recipe.recipeutil.RecipeRackUtil;
 
@@ -20,10 +21,17 @@ public class RecipeRack {
         addRackRecipeItem(Item.getItemFromBlock(Blocks.SAPLING), Item.getItemFromBlock(Blocks.DEADBUSH));
         addRackRecipeItem(Item.getItemFromBlock(Blocks.IRON_BLOCK), Item.getItemFromBlock(BlockLoader.SUPER_CHARGED_IRON_BLOCK));
 
+        addRackExplosionItem(ItemLoader.UNSTABLE_PULSE_IMPURITY, 5.0F);
+        addRackExplosionItem(ItemLoader.PULSE_IMPURITY, 2.0F);
     }
     public static void addRackRecipeItem(Item input, Item output)
     {
         RecipeRackUtil.instance().addRackRecipe(input, new ItemStack(output));
+    }
+
+    public static void addRackExplosionItem(Item item, float strength)
+    {
+        EventLightning.instance().addRackToExplosionOfItem(item, strength);
     }
 
 

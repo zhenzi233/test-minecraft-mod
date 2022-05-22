@@ -90,6 +90,7 @@ public class BlockRack extends BlockContainer {
                         entityItem.setNoPickupDelay();
                         entityItem.setOwner(playerIn.getName());
                     }
+                    te.sendInventoryItemPacket();
                     return true;
                 }
 
@@ -102,6 +103,7 @@ public class BlockRack extends BlockContainer {
                         entityItem.setNoPickupDelay();
                         entityItem.setOwner(playerIn.getName());
                     }
+                    te.sendInventoryItemPacket();
                     return true;
                 }
 
@@ -111,8 +113,10 @@ public class BlockRack extends BlockContainer {
                     {
                         up.insertItem(0, recordStack, false);
                         playerHandStack.shrink(1);
+                        te.sendInventoryItemPacket();
                     } else {
                         up.insertItem(0, recordStack, false);
+                        te.sendInventoryItemPacket();
                     }
 
                 }

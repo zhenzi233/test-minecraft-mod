@@ -13,8 +13,7 @@ import zhenzi233.zhenzimod.common.block.tileentity.TileEntityLoader;
 import zhenzi233.zhenzimod.common.capability.CapablityLoader;
 import zhenzi233.zhenzimod.common.entity.EntityLoader;
 import zhenzi233.zhenzimod.common.entity.render.RenderLoader;
-import zhenzi233.zhenzimod.common.event.EventHandler;
-import zhenzi233.zhenzimod.common.event.EventLightningConvert;
+import zhenzi233.zhenzimod.common.event.*;
 import zhenzi233.zhenzimod.common.inventory.GuiElementLoader;
 //import zhenzi233.zhenzimod.common.misc.command.CommandLoader;
 import zhenzi233.zhenzimod.common.misc.command.CommandLoader;
@@ -83,8 +82,15 @@ public class ZhenziMod
             new KeyLoader();
         }
 
-        new EventHandler();
+        if (!proxy.isServer())
+        {
+            new EventClientHandler();
+        }
 
+        new EventServerHandler();
+
+        new EventHandler();
+        new EventLightning();
         new EventLightningConvert();
 
 

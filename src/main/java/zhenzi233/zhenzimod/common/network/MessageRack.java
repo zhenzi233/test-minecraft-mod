@@ -15,13 +15,13 @@ import zhenzi233.zhenzimod.common.block.tileentity.TileEntityRack;
 import zhenzi233.zhenzimod.common.block.tileentity.runutil.RenderTileEntityRack;
 
 public class MessageRack implements IMessage {
-    public ItemStack itemStackOne;
+    public ItemStack itemStack = ItemStack.EMPTY;
 
     public BlockPos pos;
 
     public MessageRack(TileEntityRack rack) {
         this.pos = rack.getPos();
-        this.itemStackOne = rack.getInventoryItem();
+        this.itemStack = rack.getInventoryItem();
     }
 
     public MessageRack() {
@@ -33,13 +33,13 @@ public class MessageRack implements IMessage {
         buf.writeInt(this.pos.getX());
         buf.writeInt(this.pos.getY());
         buf.writeInt(this.pos.getZ());
-        ByteBufUtils.writeItemStack(buf, this.itemStackOne);
+        ByteBufUtils.writeItemStack(buf, this.itemStack);
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         this.pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
-        this.itemStackOne = ByteBufUtils.readItemStack(buf);
+        this.itemStack = ByteBufUtils.readItemStack(buf);
     }
 
 
@@ -51,10 +51,9 @@ public class MessageRack implements IMessage {
             {
                 World world = Minecraft.getMinecraft().world;
                 TileEntity tileEntity = world.getTileEntity(message.pos);
-                ItemStack shuju = message.itemStackOne;
                 if (tileEntity instanceof TileEntityRack)
                 {
-                    ((TileEntityRack) tileEntity).receiveMessageFromServer(message.itemStackOne);
+                    ((TileEntityRack) tileEntity).receiveMessageFromServer(message.itemStack);
                 }
             }
             return null;

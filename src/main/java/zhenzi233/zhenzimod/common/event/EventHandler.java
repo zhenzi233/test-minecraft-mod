@@ -28,6 +28,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.world.ChunkWatchEvent;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -51,6 +52,8 @@ import zhenzi233.zhenzimod.common.misc.ModDamageSource;
 import zhenzi233.zhenzimod.common.misc.enchantment.EnchantmentLoader;
 import zhenzi233.zhenzimod.common.misc.potion.PotionLoader;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -58,11 +61,13 @@ import java.util.Random;
 public class EventHandler {
 
     public static final EventBus EVENT_BUS = new EventBus();
+    public static boolean tileEntityIsLoadedByChunk = false;
 
     public EventHandler(){
         MinecraftForge.EVENT_BUS.register(this);
         EventHandler.EVENT_BUS.register(this);
     }
+
 
     @SubscribeEvent
     public void LightningBlotConvert(EntityJoinWorldEvent event)
@@ -100,6 +105,41 @@ public class EventHandler {
             super(bolt, world);
         }
     }
+
+
+
+//    @SubscribeEvent
+//    public void loadTileEntityRack(EntityJoinWorldEvent event)
+//    {
+//        World world = event.getWorld();
+//        List<TileEntity> list = world.loadedTileEntityList;
+//        if (event.getEntity() instanceof EntityPlayer)
+//        {
+//            for (TileEntity tileEntity : list) {
+//                if (tileEntity instanceof TileEntityRack) {
+//                    ((TileEntityRack) tileEntity).sendInventoryItemPacket();
+//                }
+//            }
+//        }
+//    }
+    @SubscribeEvent
+    public void loadTileEntityRack(ChunkWatchEvent event)
+    {
+        Map<BlockPos, TileEntity> tileEntityMap = event.getChunkInstance().getTileEntityMap();
+        for (Map.Entry<BlockPos, TileEntity> entry : tileEntityMap.entrySet())
+        {
+           TileEntity tileEntity = entry.getValue();
+           EntityPlayer player = event.getPlayer();
+            if (tileEntity instanceof TileEntityRack)
+            {
+                tileEntityIsLoadedByChunk = true;
+            }
+        }
+    }
+//    public void setTileEntityIsLoadedByChunk(boolean value)
+//    {
+//        tileEntityIsLoadedByChunk = value;
+//    }
 
     @SubscribeEvent
     public void onAttackEntity(AttackEntityEvent event) {

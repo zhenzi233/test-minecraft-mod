@@ -2,6 +2,7 @@ package zhenzi233.zhenzimod.common.block.tileentity.runutil;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import zhenzi233.zhenzimod.common.block.tileentity.TileEntityRack;
+import zhenzi233.zhenzimod.common.event.EventClientHandler;
 import zhenzi233.zhenzimod.common.item.ItemLoader;
 
 @SideOnly(Side.CLIENT)
@@ -28,17 +30,19 @@ public class RenderTileEntityRack extends TileEntitySpecialRenderer<TileEntityRa
         GlStateManager.translate(x, y, z);
 
         Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-        IItemHandler up = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-        IItemHandler down = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
-        ItemStack rackUpStack = up.getStackInSlot(0);
-        ItemStack rackDownStack = down.getStackInSlot(0);
-//        ItemStack receiverItem = te.receiveMessageFromServer();
+        float time = EventClientHandler.clientTick + partialTicks;
+        float angle = EventClientHandler.angle;
 
-        boolean flag = te.getInventoryItemStack().isEmpty();
-        if (!flag)
+
+        if (!te.clientGetInventoryItemStack().isEmpty())
         {
+
+            GlStateManager.translate(0.5D, 0.6D + 0.1 * Math.sin((time+ 10)/ 10D) , 0.5D);
+            GlStateManager.scale(1.4D, 1.4D, 1.4D);
+            GlStateManager.rotate((float) (time * 2.5), 0F, 1F, 0F);
             Minecraft mc = Minecraft.getMinecraft();
-            mc.getRenderItem().renderItem(te.getInventoryItemStack(), ItemCameraTransforms.TransformType.GROUND);
+            mc.getRenderItem().renderItem(te.clientGetInventoryItemStack(), ItemCameraTransforms.TransformType.GROUND);
+
 //            System.out.println(receiverItem);
         }
 

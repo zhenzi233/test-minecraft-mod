@@ -1,5 +1,6 @@
 package zhenzi233.zhenzimod.common.inventory.debuggingToolGui;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -15,6 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -126,6 +128,9 @@ public class GuiContainerDebugTool extends GuiContainer {
                         break;
                     }
                 case BUTTON_4:
+                    BlockPos playerPosition = player.getPosition();
+                    Material material = player.world.getBlockState(playerPosition).getMaterial();
+                    player.sendMessage(new TextComponentString("State: " + material));
                     break;
                 case BUTTON_5:
                     break;
