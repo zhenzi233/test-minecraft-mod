@@ -33,7 +33,7 @@ tile.zhenzimod.rack.name=Rack (WIP)
 itemGroup.zhenzimod=Zhenzi Mod
 
 #enchantment
-enchantment.lightning_strike=Lightning Strike
+enchantment.zhenzimod.lightning_strike=Lightning Strike
 #potion
 zhenzimod.thunder_king=Thunder King
 #control

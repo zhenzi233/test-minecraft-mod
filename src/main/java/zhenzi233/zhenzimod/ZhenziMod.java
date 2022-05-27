@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.Logger;
 import zhenzi233.zhenzimod.client.KeyLoader;
+import zhenzi233.zhenzimod.common.block.BlockLoader;
 import zhenzi233.zhenzimod.common.block.tileentity.TileEntityLoader;
 import zhenzi233.zhenzimod.common.capability.CapablityLoader;
 import zhenzi233.zhenzimod.common.entity.EntityLoader;
@@ -101,7 +102,7 @@ public class ZhenziMod
         RecipeRack.addRecipe();
 
         new GuiElementLoader();
-
+        logger.info(BlockLoader.blockList);
     }
 
     @Mod.EventHandler
