@@ -18,6 +18,8 @@ item.zhenzimod.sc_iron_boot.name=Super Charged Iron Boots (WIP)
 item.zhenzimod.sci_lightning_staff.name=Super Charged Iron Lightning Staff (WIP)
 item.zhenzimod.stable_pulse_ingot.name=Stable Pulse Ingot
 item.zhenzimod.stick_with_upi.name=Stick With Unstable Pulse Impurity (WIP)
+item.zhenzimod.lightning_book.name=Lightning Book (WIP)
+item.zhenzimod.scroll.name=Scroll (WIP)
 
 #block
 tile.zhenzimod.super_charged_iron_block.name=Super Charged Iron Block
@@ -27,10 +29,10 @@ tile.zhenzimod.iron_lightning_block.name=Iron Lightning Block
 tile.zhenzimod.iron_lightning_rs_block.name=Iron RedStone Lightning Block
 tile.zhenzimod.iron_lightning_rs_block_broken.name=Broken Iron RedStone Lightning Block
 tile.zhenzimod.sci_pulse_furnace.name=Super Charged Iron Pulse Furnace (WIP)
-tile.zhenzimod.rack.name=Rack (WIP)
+tile.zhenzimod.rack.name=Rack
 
 #CreativeTab
-itemGroup.zhenzimod=Zhenzi Mod
+zhenzimod.creative_tab.item.label=Zhenzi Mod
 
 #enchantment
 enchantment.zhenzimod.lightning_strike=Lightning Strike

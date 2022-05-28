@@ -42,7 +42,7 @@ public class ItemLoader
     {
         Item[] items = {
                 setItemName(GREEN_DOG = new ItemBase(), "green_dog"),
-                setItemName(LIGHTNING_STAFF = new ItemLightningStaff(-1), "lightning_staff"),
+                setItemName(LIGHTNING_STAFF = new ItemLightningStaff(-1, 256F), "lightning_staff"),
                 setItemName(SC_IRON_PICKAXE = new ItemSCIronTools.ItemSCIronPickaxe(MaterialHandler.SCIRON_TOOL), "sc_iron_pickaxe"),
                 setItemName(SC_IRON_AXE = new ItemSCIronTools.ItemSCIronAxe(MaterialHandler.SCIRON_TOOL, 9.0f, -2.9f), "sc_iron_axe"),
                 setItemName(SC_IRON_HOE = new ItemSCIronTools.ItemSCIronHoe(MaterialHandler.SCIRON_TOOL), "sc_iron_hoe"),
@@ -57,7 +57,7 @@ public class ItemLoader
                 setItemName(SC_IRON_BOOT = new ItemBase(), "sc_iron_boot"),
                 setItemName(SC_IRON_LEGGINGS = new ItemBase(), "sc_iron_leggings"),
                 setItemName(SC_IRON_HELMET = new ItemBase(), "sc_iron_helmet"),
-                setItemName(SCI_LIGHTNING_STAFF = new ItemLightningStaff(450), "sci_lightning_staff"),
+                setItemName(SCI_LIGHTNING_STAFF = new ItemLightningStaff(450, 32F), "sci_lightning_staff"),
                 setItemName(STABLE_PULSE_INGOT = new ItemBase(), "stable_pulse_ingot"),
                 setItemName(STICK_WITH_UPI = new ItemBase(), "stick_with_upi"),
                 setItemName(LIGHTNING_BOOK = new ItemBase(), "lightning_book"),

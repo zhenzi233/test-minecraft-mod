@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -102,7 +103,11 @@ public class GuiContainerDebugTool1 extends GuiContainer {
             case BUTTON_3:
 //                player.dropItem(new ItemStack(ItemLoader.GREEN_DOG), false);
 //                world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.GREEN_DOG)));
-                containerDebugTool1.value = 1;
+                RayTraceResult rayTraceResult = mc.objectMouseOver;
+                if (rayTraceResult.typeOfHit == RayTraceResult.Type.ENTITY)
+                {
+                    System.out.println(rayTraceResult.entityHit);
+                }
                 break;
             case BUTTON_4:
                 System.out.println(containerDebugTool1.value);

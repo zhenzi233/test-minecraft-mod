@@ -1,6 +1,7 @@
 package zhenzi233.zhenzimod.common.event;
 
 import com.google.common.collect.Maps;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.state.IBlockState;
@@ -10,7 +11,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -49,15 +52,21 @@ public class EventLightningConvert {
     @SubscribeEvent
     public void LightningBlotConvert(EntityJoinWorldEvent event)
     {
-
         World world = event.getWorld();
-        Entity entity = event.getEntity();
-        if (entity instanceof EntityLightningBolt)
+        if (!world.isRemote)
         {
-            BlockPos entityPos = entity.getPosition();
-            convert(world, entityPos);
-            convert(world, entityPos.add(0, -1, 0));
-
+            Entity entity = event.getEntity();
+            if (entity instanceof EntityLightningBolt)
+            {
+                BlockPos entityPos = entity.getPosition();
+                Block fire = world.getBlockState(entityPos).getBlock();
+                if (fire.equals(Blocks.FIRE))
+                {
+                    convert(world, entityPos.add(0, -1, 0));
+                }   else {
+                    convert(world, entityPos);
+                }
+            }
         }
     }
 
@@ -65,14 +74,7 @@ public class EventLightningConvert {
     public void convert(World world, BlockPos pos)
     {
         IBlockState getBlockState = world.getBlockState(pos);
-        IBlockState getBlockState2 = world.getBlockState(pos.add(0, -1, 0));
         IBlockState output = this.getConvertRecipe(getBlockState);
-        IBlockState output2 = this.getConvertRecipe(getBlockState2);
-        if (output2 != null && output == null)
-        {
-            world.destroyBlock(pos.add(0, -1, 0), false);
-            world.setBlockState(pos.add(0, -1, 0), output2);
-        }
         if (output != null) //判断方块是否符合条件
         {
             world.destroyBlock(pos, false);
